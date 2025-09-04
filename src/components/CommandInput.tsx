@@ -136,16 +136,21 @@ export const CommandInput = ({
           className={clsx(
             'flex-1 min-w-0 bg-transparent text-green-300 font-mono text-xs sm:text-sm',
             'outline-none border-none placeholder-green-600',
-            'caret-green-400'
+            'caret-green-400',
+            // Ensure mobile keyboard shows
+            'focus:outline-none focus:ring-0'
           )}
           style={{ textShadow: '0 0 5px currentColor' }}
           autoComplete="off"
           autoCorrect="off"
-          autoCapitalize="off"
+          autoCapitalize="characters"
           spellCheck={false}
           data-1p-ignore
           data-lpignore="true"
           data-form-type="other"
+          // Mobile-specific attributes
+          inputMode="text"
+          enterKeyHint="go"
         />
         
         <motion.div

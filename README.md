@@ -1,4 +1,4 @@
-# MU-TH-UR 6000 Terminal - React/Next.js Edition
+# MU-TH-UR 6000 Terminal Simulation
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
@@ -13,85 +13,73 @@
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
-An immersive, interactive web-based simulation of the MU-TH-UR 6000 computer terminal from the Alien science fiction universe. Experience the atmosphere of the USCSS Nostromo with authentic commands, ship systems, crew data, and the infamous Special Order 937.
+Step aboard the USCSS Nostromo and access the ship's mainframe computer system. This faithful recreation of the MU-TH-UR 6000 terminal from Ridley Scott's *Alien* (1979) brings the atmospheric dread of deep space to your browser.
 
-## 🚀 **Live Experience**
+## 🛸 **[>> CONNECT TO TERMINAL <<](https://jcar.github.io/muthur-terminal/)**
 
-Visit the terminal: **[Launch MU-TH-UR 6000](http://localhost:3000)**
+*No installation required - runs directly in your browser*
 
-## ✨ **Features**
+## What You'll Find Here
 
-### 🎮 **Authentic Terminal Experience**
-- Realistic CRT monitor effects with scanlines and phosphor glow
-- Authentic typing animations and command responses
-- Real-time system monitoring with visual status indicators
-- Dynamic background alert system with alien encounters
-- Immersive audio-visual effects and terminal aesthetics
+This is a pixel-perfect recreation of the MU-TH-UR 6000 mainframe computer from the 1979 film *Alien*. Every detail has been painstakingly reproduced - from the green phosphor glow of the CRT monitors to the authentic startup sequence that audiences saw aboard the USCSS Nostromo.
 
-### 🛸 **Complete Ship Systems**
-- **STATUS** - Real-time ship status with visual health bars
-- **SYSTEMS** - Detailed monitoring of all Nostromo systems
-- **CREW** - Complete crew manifest with clearance levels
-- **NAVIGATION** - Star charts and position data with ASCII art
-- **MISSION** - Mission parameters including cargo and objectives
-- **LOGS** - Ship's log entries from all crew members
-- **SCAN** - Sensor sweeps with life form detection
-- **EMERGENCY** - Emergency protocols and evacuation procedures
+**Key Features:**
+- Full ship systems monitoring (life support, engines, navigation, sensors)
+- Complete crew database with authentic character details from the film
+- Interactive ship's logs and mission briefings
+- The infamous Special Order 937 (accessible with proper clearance)
+- Real-time alien organism detection and tracking
+- Emergency protocols and self-destruct sequences
+- Multiple user authentication levels matching the film's hierarchy
 
-### 🔒 **Advanced Security Features**
-- Multi-level user authentication system
-- Clearance-based access restrictions (ALPHA, BETA, GAMMA, DELTA)
-- Special Order 937 access controls
-- Synthetic unit override capabilities (ASH login)
-- Failed login attempt tracking with lockout
+## Access Credentials
 
-## 🎯 **Getting Started**
+To log into the terminal, use any of these crew member IDs:
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-- Modern web browser with JavaScript enabled
+- **RIPLEY** (Ellen Ripley - Warrant Officer) - Full system access
+- **ASH** (Ash - Science Officer) - Synthetic override capabilities  
+- **DALLAS** (Arthur J. Dallas - Captain) - Command-level access
+- **KANE** (Thomas Kane - Executive Officer) - Limited access
+- **LAMBERT** (Joan Lambert - Navigator) - Navigation systems
+- **PARKER** (Dennis Parker - Chief Engineer) - Engineering access
+- **BRETT** (Samuel Brett - Engineering Technician) - Maintenance systems
 
-### Installation
+Try typing **HELP** after logging in to see available commands.
+
+## What Makes This Different
+
+This isn't just another retro terminal simulator. Every aspect has been researched and implemented to match the film:
+
+- **Authentic 1979 computer behavior** - No modern conveniences or interfaces
+- **Real CRT monitor effects** - Scanlines, phosphor glow, and screen flicker
+- **Film-accurate data** - All crew information, ship specs, and mission details match the source material
+- **Progressive revelation** - Discover the horror of the alien organism through authentic computer logs
+- **Multiple story paths** - Different access levels reveal different aspects of the Nostromo's fate
+
+## For Developers
+
+Built with Next.js 15, TypeScript, and Tailwind CSS. Features include:
+- Static site generation for GitHub Pages deployment
+- Responsive design that works on mobile devices
+- Custom password manager blocking for authentic retro experience
+- Aggressive auto-scrolling to mimic real terminal behavior
+- Comprehensive test coverage of all ship systems
 
 ```bash
-# Install dependencies
+# Run locally
 npm install
-
-# Start development server
 npm run dev
-
-# Open browser to http://localhost:3000
 ```
 
-### Authentication
-- **RIPLEY** - Warrant Officer (Active - full access)
-- **ASH** - Science Officer (Synthetic override capabilities)
-- Other crew members have various restrictions
+## The Technical Challenge
 
-### Essential Commands
-```
-HELP        - Display all available commands
-STATUS      - Get ship overview with visual indicators
-SYSTEMS     - Check detailed system health
-CREW        - View crew manifest
-SCAN        - Perform sensor sweeps
-SPECIAL     - Access Special Order 937 (requires clearance)
-XENOMORPH   - Hidden alien database
-```
+Recreating a 1979 computer interface in a modern browser presented unique challenges:
+- Preventing modern browser features (autocomplete, password managers) from interfering
+- Implementing authentic terminal scrolling behavior
+- Achieving pixel-perfect CRT monitor effects
+- Balancing film accuracy with usability across devices
 
-## 🛠 **Technical Stack**
-
-- **Framework**: Next.js 15 with TypeScript
-- **Styling**: Tailwind CSS with custom CRT effects
-- **Animations**: Framer Motion
-- **Fonts**: JetBrains Mono (authentic terminal font)
-
-## 👽 **The Experience**
-
-This isn't just a terminal emulator—it's a complete immersive experience that captures the atmosphere and tension of the Alien universe. Random alien encounters, authentic dialogue, and realistic system responses create an unforgettable journey aboard the doomed Nostromo.
-
-**Ready to experience the terror of space?** 🚀👽
+Every detail matters when you're trying to capture the claustrophobic atmosphere of deep space.
 
 ---
 

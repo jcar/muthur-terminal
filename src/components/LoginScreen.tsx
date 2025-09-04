@@ -143,51 +143,55 @@ export const LoginScreen = ({ onLogin, onLoginAttempt, className }: LoginScreenP
                 <label className="block text-green-400 font-mono text-sm mb-2">
                   ENTER USER ID:
                 </label>
-                <div
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      handleSubmit(e as React.KeyboardEvent);
-                      return;
-                    }
-                    
-                    // Handle character input manually
-                    if (e.key.length === 1) {
-                      e.preventDefault();
-                      const char = e.key.toUpperCase();
-                      if (/[A-Z0-9]/.test(char)) {
-                        const newValue = userId + char;
-                        setUserId(newValue);
+                <div className="relative">
+                  {/* Hidden input for mobile keyboard */}
+                  <input
+                    type="text"
+                    value={userId}
+                    onChange={(e) => {
+                      const value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+                      setUserId(value);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleSubmit(e);
                       }
-                    } else if (e.key === 'Backspace') {
-                      e.preventDefault();
-                      setUserId(userId.slice(0, -1));
-                    } else if (e.key === 'Delete') {
-                      e.preventDefault();
-                      setUserId('');
-                    }
-                  }}
-                  className={clsx(
-                    'w-full p-3 bg-black border border-green-600 min-h-[40px] flex items-center relative',
-                    'font-mono text-sm',
-                    'focus:border-green-400 focus:outline-none',
-                    'cursor-text uppercase',
-                    isLoading && 'opacity-50 cursor-not-allowed'
-                  )}
-                  style={{ 
-                    textShadow: '0 0 5px currentColor',
-                    lineHeight: '1.2em'
-                  }}
-                >
-                  <span className={clsx(userId ? 'text-green-300' : 'text-green-700')}>
-                    {userId || 'CREW ID...'}
-                  </span>
-                  <motion.div
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                    className="w-2 h-4 bg-green-400 ml-1"
+                    }}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="characters"
+                    spellCheck={false}
+                    data-1p-ignore
+                    data-lpignore="true"
+                    data-form-type="other"
+                    disabled={isLoading}
                   />
+                  
+                  {/* Visual display */}
+                  <div
+                    className={clsx(
+                      'w-full p-3 bg-black border border-green-600 min-h-[40px] flex items-center relative',
+                      'font-mono text-sm',
+                      'focus-within:border-green-400',
+                      'cursor-text uppercase',
+                      isLoading && 'opacity-50 cursor-not-allowed'
+                    )}
+                    style={{ 
+                      textShadow: '0 0 5px currentColor',
+                      lineHeight: '1.2em'
+                    }}
+                  >
+                    <span className={clsx(userId ? 'text-green-300' : 'text-green-700')}>
+                      {userId || 'CREW ID...'}
+                    </span>
+                    <motion.div
+                      animate={{ opacity: [0, 1, 0] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                      className="w-2 h-4 bg-green-400 ml-1"
+                    />
+                  </div>
                 </div>
               </div>
 
