@@ -126,32 +126,53 @@ export const CommandInput = ({
           {getPrompt()}
         </span>
         
-        <input
-          ref={inputRef}
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder={placeholder}
-          className={clsx(
-            'flex-1 min-w-0 bg-transparent text-green-300 font-mono text-xs sm:text-sm',
-            'outline-none border-none placeholder-green-600',
-            'caret-green-400',
-            // Ensure mobile keyboard shows
-            'focus:outline-none focus:ring-0'
+        <div className="flex-1 min-w-0 relative">
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder={placeholder}
+            className={clsx(
+              'w-full bg-transparent text-green-300 font-mono',
+              'text-sm sm:text-sm md:text-base', // Larger text on mobile
+              'outline-none border-none',
+              'placeholder-green-500 placeholder:opacity-90', // Brighter placeholder
+              'caret-green-400',
+              // Ensure mobile keyboard shows
+              'focus:outline-none focus:ring-0'
+            )}
+            style={{ 
+              textShadow: '0 0 5px currentColor',
+              fontSize: 'max(14px, 1rem)' // Ensure minimum font size for mobile
+            }}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="characters"
+            spellCheck={false}
+            data-1p-ignore
+            data-lpignore="true"
+            data-form-type="other"
+            // Mobile-specific attributes
+            inputMode="text"
+            enterKeyHint="go"
+          />
+          
+          {/* Fallback visual placeholder for mobile when native placeholder isn't visible */}
+          {!input && (
+            <div 
+              className="absolute inset-0 flex items-center pointer-events-none"
+              style={{ 
+                color: 'rgb(34 197 94 / 0.6)', // green-500 with opacity
+                textShadow: '0 0 5px currentColor',
+                fontSize: 'max(14px, 0.875rem)'
+              }}
+            >
+              <span className="font-mono">{placeholder}</span>
+            </div>
           )}
-          style={{ textShadow: '0 0 5px currentColor' }}
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="characters"
-          spellCheck={false}
-          data-1p-ignore
-          data-lpignore="true"
-          data-form-type="other"
-          // Mobile-specific attributes
-          inputMode="text"
-          enterKeyHint="go"
-        />
+        </div>
         
         <motion.div
           animate={{ opacity: [0, 1, 0] }}
