@@ -159,6 +159,7 @@ export const LoginScreen = ({ onLogin, onLoginAttempt, className }: LoginScreenP
                       }
                     }}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                    style={{ fontSize: '16px' }} // Prevent iOS zoom
                     autoComplete="off"
                     autoCorrect="off"
                     autoCapitalize="characters"

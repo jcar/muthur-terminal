@@ -145,7 +145,7 @@ export const CommandInput = ({
             )}
             style={{ 
               textShadow: '0 0 5px currentColor',
-              fontSize: 'max(14px, 1rem)' // Ensure minimum font size for mobile
+              fontSize: '16px' // Prevent iOS zoom by using exactly 16px
             }}
             autoComplete="off"
             autoCorrect="off"
