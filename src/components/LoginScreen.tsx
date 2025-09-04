@@ -130,27 +130,65 @@ export const LoginScreen = ({ onLogin, onLoginAttempt, className }: LoginScreenP
               </div>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
+            <form onSubmit={handleSubmit} autoComplete="off" data-form-type="other">
+              {/* Hidden dummy password field to confuse password managers */}
+              <input
+                type="password"
+                name="dummy-password-field"
+                tabIndex={-1}
+                style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}
+                autoComplete="new-password"
+              />
+              <div className="mb-4 relative">
                 <label className="block text-green-400 font-mono text-sm mb-2">
                   ENTER USER ID:
                 </label>
-                <input
-                  type="text"
-                  value={userId}
-                  onChange={(e) => setUserId(e.target.value)}
+                <div
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleSubmit(e as any);
+                      return;
+                    }
+                    
+                    // Handle character input manually
+                    if (e.key.length === 1) {
+                      e.preventDefault();
+                      const char = e.key.toUpperCase();
+                      if (/[A-Z0-9]/.test(char)) {
+                        const newValue = userId + char;
+                        setUserId(newValue);
+                      }
+                    } else if (e.key === 'Backspace') {
+                      e.preventDefault();
+                      setUserId(userId.slice(0, -1));
+                    } else if (e.key === 'Delete') {
+                      e.preventDefault();
+                      setUserId('');
+                    }
+                  }}
                   className={clsx(
-                    'w-full p-3 bg-black border border-green-600',
-                    'text-green-300 font-mono text-sm',
+                    'w-full p-3 bg-black border border-green-600 min-h-[40px] flex items-center relative',
+                    'font-mono text-sm',
                     'focus:border-green-400 focus:outline-none',
-                    'placeholder-green-700 uppercase'
+                    'cursor-text uppercase',
+                    isLoading && 'opacity-50 cursor-not-allowed'
                   )}
-                  style={{ textShadow: '0 0 5px currentColor' }}
-                  placeholder="CREW ID..."
-                  autoComplete="off"
-                  spellCheck={false}
-                  disabled={isLoading}
-                />
+                  style={{ 
+                    textShadow: '0 0 5px currentColor',
+                    lineHeight: '1.2em'
+                  }}
+                >
+                  <span className={clsx(userId ? 'text-green-300' : 'text-green-700')}>
+                    {userId || 'CREW ID...'}
+                  </span>
+                  <motion.div
+                    animate={{ opacity: [0, 1, 0] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                    className="w-2 h-4 bg-green-400 ml-1"
+                  />
+                </div>
               </div>
 
               <AnimatePresence>

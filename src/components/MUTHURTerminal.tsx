@@ -29,6 +29,7 @@ export const MUTHURTerminal = () => {
   const alertInterval = useRef<NodeJS.Timeout | null>(null);
   const lineIdCounter = useRef(0);
   const sessionId = useRef(Date.now()); // Unique session identifier
+  const terminalDisplayRef = useRef<{ scrollToBottom: () => void } | null>(null);
 
   // Initialize command processor
   useEffect(() => {
@@ -50,7 +51,25 @@ export const MUTHURTerminal = () => {
       type,
       delay
     };
-    setLines(prev => [...prev, newLine]);
+    setLines(prev => {
+      const updated = [...prev, newLine];
+      // Immediate and aggressive scroll triggers
+      const scrollNow = () => {
+        const container = document.querySelector('.terminal-display');
+        if (container) {
+          container.scrollTop = container.scrollHeight;
+        }
+      };
+      
+      // Multiple scroll attempts with different timings
+      setTimeout(scrollNow, 0);
+      setTimeout(scrollNow, 10);
+      setTimeout(scrollNow, 50);
+      setTimeout(scrollNow, 100);
+      requestAnimationFrame(scrollNow);
+      
+      return updated;
+    });
   };
 
   const addMultipleLines = (texts: string[], type?: TerminalLine['type']) => {
@@ -228,7 +247,7 @@ export const MUTHURTerminal = () => {
 
   if (showLogin) {
     return (
-      <div className="w-full h-full max-h-screen bg-black text-green-400 overflow-hidden relative">
+      <div className="terminal-container bg-black text-green-400">
         <div 
           className="absolute inset-0 opacity-20"
           style={{
@@ -246,7 +265,7 @@ export const MUTHURTerminal = () => {
   }
 
   return (
-    <div className="w-full h-full max-h-screen bg-black text-green-400 flex flex-col overflow-hidden relative terminal-container">
+    <div className="terminal-container bg-black text-green-400">
       {/* Scanline effect */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-20 z-20"
@@ -287,11 +306,11 @@ export const MUTHURTerminal = () => {
       </AnimatePresence>
       
       {/* Terminal content */}
-      <div className="flex-1 flex flex-col relative z-10 min-h-0">
+      <div className="terminal-content relative z-10">
         <TerminalDisplay 
           lines={lines}
           isTyping={isStartingUp || isLoading}
-          className="flex-1 min-h-0"
+          className="terminal-display"
         />
         
         <div className="flex-shrink-0">

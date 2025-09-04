@@ -118,9 +118,9 @@ export const CommandInput = ({
       'border-t border-green-600 bg-black bg-opacity-60 flex-shrink-0',
       className
     )}>
-      <form onSubmit={handleSubmit} className="flex items-center p-2 md:p-4">
+      <form onSubmit={handleSubmit} className="flex items-center p-2 sm:p-3 md:p-4 w-full">
         <span 
-          className="text-green-400 font-mono text-xs md:text-sm mr-2 select-none flex-shrink-0"
+          className="text-green-400 font-mono text-xs sm:text-sm mr-2 select-none flex-shrink-0"
           style={{ textShadow: '0 0 10px currentColor' }}
         >
           {getPrompt()}
@@ -134,13 +134,18 @@ export const CommandInput = ({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className={clsx(
-            'flex-1 min-w-0 bg-transparent text-green-300 font-mono text-xs md:text-sm',
+            'flex-1 min-w-0 bg-transparent text-green-300 font-mono text-xs sm:text-sm',
             'outline-none border-none placeholder-green-600',
             'caret-green-400'
           )}
           style={{ textShadow: '0 0 5px currentColor' }}
           autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
           spellCheck={false}
+          data-1p-ignore
+          data-lpignore="true"
+          data-form-type="other"
         />
         
         <motion.div

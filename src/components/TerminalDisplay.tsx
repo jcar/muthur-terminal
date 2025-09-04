@@ -21,16 +21,64 @@ export const TerminalDisplay = ({ lines, isTyping = false, className }: Terminal
   const containerRef = useRef<HTMLDivElement>(null);
   const [visibleLines, setVisibleLines] = useState<TerminalLine[]>([]);
 
-  // Auto-scroll to bottom when new lines are added
-  useEffect(() => {
+  // Force scroll to bottom function
+  const forceScrollToBottom = () => {
     if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+      const container = containerRef.current;
+      container.scrollTop = container.scrollHeight;
     }
+  };
+
+  // Watch for DOM changes and scroll immediately
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new MutationObserver(() => {
+      // Scroll immediately when DOM changes
+      forceScrollToBottom();
+      // Also scroll after a brief delay to catch any layout changes
+      requestAnimationFrame(forceScrollToBottom);
+      setTimeout(forceScrollToBottom, 50);
+    });
+
+    observer.observe(container, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Scroll on lines change
+  useEffect(() => {
+    forceScrollToBottom();
+    requestAnimationFrame(forceScrollToBottom);
+    const timeoutId = setTimeout(forceScrollToBottom, 100);
+    return () => clearTimeout(timeoutId);
+  }, [lines]);
+
+  // Scroll on visible lines change
+  useEffect(() => {
+    forceScrollToBottom();
+    requestAnimationFrame(forceScrollToBottom);
   }, [visibleLines]);
+
+  // Continuous scrolling during typing animations
+  useEffect(() => {
+    if (!isTyping) return;
+    
+    const scrollInterval = setInterval(forceScrollToBottom, 50);
+    
+    return () => clearInterval(scrollInterval);
+  }, [isTyping]);
 
   // Directly show lines without complex animation to avoid key conflicts
   useEffect(() => {
     setVisibleLines(lines);
+    // Immediate scroll when lines become visible
+    setTimeout(forceScrollToBottom, 0);
   }, [lines]);
 
   const getLineColor = (type?: string): string => {
@@ -60,16 +108,19 @@ export const TerminalDisplay = ({ lines, isTyping = false, className }: Terminal
     <div
       ref={containerRef}
       className={clsx(
-        'font-mono text-sm leading-relaxed',
-        'overflow-y-auto scrollbar-thin scrollbar-track-gray-900 scrollbar-thumb-green-600',
-        'h-full max-h-full p-2 md:p-4 bg-black bg-opacity-80',
+        'font-mono text-xs sm:text-sm leading-relaxed',
+        'overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-gray-900 scrollbar-thumb-green-600',
+        'h-full max-h-full w-full p-2 sm:p-3 md:p-4 bg-black bg-opacity-80',
         'selection:bg-green-400 selection:text-black',
+        'box-border',
         className
       )}
       style={{
         textShadow: '0 0 10px currentColor',
         background: 'radial-gradient(ellipse at center, rgba(0, 255, 0, 0.1) 0%, rgba(0, 0, 0, 0.9) 70%)',
-        minHeight: 0 // Allow flexbox to shrink
+        minHeight: 0, // Allow flexbox to shrink
+        maxWidth: '100%',
+        wordBreak: 'break-word'
       }}
     >
       <AnimatePresence>
@@ -125,9 +176,9 @@ const TerminalLine = ({ line, getLineColor, getLinePrefix, index }: TerminalLine
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.1 }}
       className={clsx(
         getLineColor(line.type),
         'whitespace-pre-wrap break-words',
