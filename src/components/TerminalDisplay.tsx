@@ -147,7 +147,7 @@ interface TerminalLineProps {
   index: number;
 }
 
-const TerminalLine = ({ line, getLineColor, getLinePrefix, index }: TerminalLineProps) => {
+const TerminalLine = ({ line, getLineColor, getLinePrefix }: TerminalLineProps) => {
   const [displayText, setDisplayText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
 

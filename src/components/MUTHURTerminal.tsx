@@ -29,7 +29,6 @@ export const MUTHURTerminal = () => {
   const alertInterval = useRef<NodeJS.Timeout | null>(null);
   const lineIdCounter = useRef(0);
   const sessionId = useRef(Date.now()); // Unique session identifier
-  const terminalDisplayRef = useRef<{ scrollToBottom: () => void } | null>(null);
 
   // Initialize command processor
   useEffect(() => {

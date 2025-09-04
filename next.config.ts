@@ -8,9 +8,18 @@ const nextConfig: NextConfig = {
   // Disable source maps in production for security
   productionBrowserSourceMaps: false,
   
-  // Optimize images
+  // Configure for static export (GitHub Pages)
+  output: 'export',
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
+  
+  // GitHub Pages configuration
+  basePath: process.env.NODE_ENV === 'production' ? '/muthur-terminal' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/muthur-terminal/' : '',
+  
+  // Optimize images for static export
   images: {
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true, // Required for static export
   },
 };
 
