@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MU-TH-UR 6000 Terminal - React/Next.js Edition
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║               WEYLAND-YUTANI CORPORATION                     ║
+║                 BUILDING BETTER WORLDS                      ║
+║                                                              ║
+║                  MU-TH-UR 6000 TERMINAL                     ║
+║              Science Officer Interface System               ║
+║                     WEB EDITION                             ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+An immersive, interactive web-based simulation of the MU-TH-UR 6000 computer terminal from the Alien science fiction universe. Experience the atmosphere of the USCSS Nostromo with authentic commands, ship systems, crew data, and the infamous Special Order 937.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 **Live Experience**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Visit the terminal: **[Launch MU-TH-UR 6000](http://localhost:3000)**
 
-## Learn More
+## ✨ **Features**
 
-To learn more about Next.js, take a look at the following resources:
+### 🎮 **Authentic Terminal Experience**
+- Realistic CRT monitor effects with scanlines and phosphor glow
+- Authentic typing animations and command responses
+- Real-time system monitoring with visual status indicators
+- Dynamic background alert system with alien encounters
+- Immersive audio-visual effects and terminal aesthetics
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🛸 **Complete Ship Systems**
+- **STATUS** - Real-time ship status with visual health bars
+- **SYSTEMS** - Detailed monitoring of all Nostromo systems
+- **CREW** - Complete crew manifest with clearance levels
+- **NAVIGATION** - Star charts and position data with ASCII art
+- **MISSION** - Mission parameters including cargo and objectives
+- **LOGS** - Ship's log entries from all crew members
+- **SCAN** - Sensor sweeps with life form detection
+- **EMERGENCY** - Emergency protocols and evacuation procedures
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🔒 **Advanced Security Features**
+- Multi-level user authentication system
+- Clearance-based access restrictions (ALPHA, BETA, GAMMA, DELTA)
+- Special Order 937 access controls
+- Synthetic unit override capabilities (ASH login)
+- Failed login attempt tracking with lockout
 
-## Deploy on Vercel
+## 🎯 **Getting Started**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Modern web browser with JavaScript enabled
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Open browser to http://localhost:3000
+```
+
+### Authentication
+- **RIPLEY** - Warrant Officer (Active - full access)
+- **ASH** - Science Officer (Synthetic override capabilities)
+- Other crew members have various restrictions
+
+### Essential Commands
+```
+HELP        - Display all available commands
+STATUS      - Get ship overview with visual indicators
+SYSTEMS     - Check detailed system health
+CREW        - View crew manifest
+SCAN        - Perform sensor sweeps
+SPECIAL     - Access Special Order 937 (requires clearance)
+XENOMORPH   - Hidden alien database
+```
+
+## 🛠 **Technical Stack**
+
+- **Framework**: Next.js 15 with TypeScript
+- **Styling**: Tailwind CSS with custom CRT effects
+- **Animations**: Framer Motion
+- **Fonts**: JetBrains Mono (authentic terminal font)
+
+## 👽 **The Experience**
+
+This isn't just a terminal emulator—it's a complete immersive experience that captures the atmosphere and tension of the Alien universe. Random alien encounters, authentic dialogue, and realistic system responses create an unforgettable journey aboard the doomed Nostromo.
+
+**Ready to experience the terror of space?** 🚀👽
+
+---
+
+```
+Building Better Worlds
+- Weyland-Yutani Corporation
+```
